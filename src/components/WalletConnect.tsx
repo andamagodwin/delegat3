@@ -12,7 +12,11 @@ const WalletConnect = ({ onConnect }: WalletConnectProps) => {
       <div className="max-w-md w-full">
         <div className="text-center mb-8">
           <div className="flex items-center justify-center space-x-2 mb-6">
-            <div className="w-12 h-12 bg-gradient-to-r from-purple-400 to-pink-400 rounded-xl"></div>
+            <img 
+              src="/logo.png" 
+              alt="Delegat3 Logo" 
+              className="w-12 h-12 rounded-xl"
+            />
             <span className="text-white text-3xl font-bold">Delegat3</span>
           </div>
           
@@ -36,7 +40,7 @@ const WalletConnect = ({ onConnect }: WalletConnectProps) => {
 
             <button
               onClick={handleConnect}
-              className="w-full bg-gradient-to-r from-purple-500 to-pink-500 text-white py-4 rounded-xl font-semibold text-lg hover:from-purple-600 hover:to-pink-600 transition-all duration-200 transform hover:scale-105"
+              className="w-full bg-gradient-to-r from-primary-500 to-primary-600 text-white py-4 rounded-xl font-semibold text-lg hover:from-primary-600 hover:to-primary-700 transition-all duration-200 transform hover:scale-105"
             >
               Connect Wallet
             </button>

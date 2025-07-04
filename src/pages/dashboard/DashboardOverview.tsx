@@ -171,7 +171,7 @@ const DashboardOverview = () => {
 
       {/* Current Delegation Status */}
       {delegationState.currentDelegate && (
-        <div className="bg-gradient-to-r from-purple-500/20 to-pink-500/20 backdrop-blur-sm rounded-xl p-6 border border-purple-300/30">
+        <div className="bg-gradient-to-r from-primary-500/20 to-primary-600/20 backdrop-blur-sm rounded-xl p-6 border border-primary-300/30">
           <h3 className="text-xl font-semibold text-white mb-4">Current Delegation Status</h3>
           <div className="flex items-center justify-between">
             <div>
@@ -239,7 +239,7 @@ const DashboardOverview = () => {
           <div className="space-y-3">
             <a
               href="/dashboard/delegate"
-              className="block p-4 bg-gradient-to-r from-purple-500/20 to-pink-500/20 rounded-lg border border-purple-300/30 hover:border-purple-300/50 transition-all"
+              className="block p-4 bg-gradient-to-r from-primary-500/20 to-primary-600/20 rounded-lg border border-primary-300/30 hover:border-primary-300/50 transition-all"
             >
               <div className="flex items-center justify-between">
                 <div>

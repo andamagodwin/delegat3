@@ -111,7 +111,7 @@ const StewardsPage = () => {
                 className={`px-6 py-2 rounded-lg font-semibold transition-all duration-200 ${
                   delegationState.currentDelegate === steward.address
                     ? 'bg-green-500/20 text-green-400 cursor-not-allowed'
-                    : 'bg-gradient-to-r from-purple-500 to-pink-500 text-white hover:from-purple-600 hover:to-pink-600 disabled:opacity-50'
+                    : 'bg-gradient-to-r from-primary-500 to-primary-600 text-white hover:from-primary-600 hover:to-primary-700 disabled:opacity-50'
                 }`}
               >
                 {delegationState.currentDelegate === steward.address 
@@ -196,7 +196,7 @@ const StewardsPage = () => {
                     setSelectedSteward(null)
                   }}
                   disabled={delegationState.isLoading || delegationState.currentDelegate === selectedSteward.address}
-                  className="flex-1 bg-gradient-to-r from-purple-500 to-pink-500 text-white px-6 py-3 rounded-lg font-semibold hover:from-purple-600 hover:to-pink-600 transition-all disabled:opacity-50"
+                  className="flex-1 bg-gradient-to-r from-primary-500 to-primary-600 text-white px-6 py-3 rounded-lg font-semibold hover:from-primary-600 hover:to-primary-700 transition-all disabled:opacity-50"
                 >
                   {delegationState.currentDelegate === selectedSteward.address 
                     ? 'Current Delegate' 

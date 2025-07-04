@@ -2,17 +2,21 @@ import { Link } from 'react-router-dom';
 
 const AboutPage = () => {
   return (
-    <div className="min-h-screen bg-gradient-to-br from-purple-900 via-blue-900 to-indigo-900">
+    <div className="min-h-screen bg-gradient-to-br from-slate-900 via-slate-800 to-slate-900">
       {/* Navigation */}
       <nav className="relative z-10 px-6 py-4">
         <div className="max-w-7xl mx-auto flex items-center justify-between">
           <Link to="/" className="flex items-center space-x-2">
-            <div className="w-8 h-8 bg-gradient-to-r from-purple-400 to-pink-400 rounded-lg"></div>
+            <img 
+              src="/logo.png" 
+              alt="Delegat3 Logo" 
+              className="w-8 h-8 rounded-lg"
+            />
             <span className="text-white text-xl font-bold">Delegat3</span>
           </Link>
           <Link 
             to="/dashboard" 
-            className="bg-white text-purple-900 px-6 py-2 rounded-full font-semibold hover:bg-gray-100 transition-colors duration-200"
+            className="bg-primary-500 text-white px-6 py-2 rounded-full font-semibold hover:bg-primary-600 transition-colors duration-200"
           >
             Launch App
           </Link>
@@ -62,7 +66,7 @@ const AboutPage = () => {
           <h2 className="text-3xl font-bold text-white text-center mb-12">How Delegation Works</h2>
           <div className="grid md:grid-cols-3 gap-8">
             <div className="text-center">
-              <div className="w-16 h-16 bg-gradient-to-r from-purple-500 to-pink-500 rounded-full flex items-center justify-center text-2xl mb-4 mx-auto">
+              <div className="w-16 h-16 bg-gradient-to-r from-primary-500 to-primary-600 rounded-full flex items-center justify-center text-2xl mb-4 mx-auto">
                 1
               </div>
               <h3 className="text-xl font-semibold text-white mb-3">Connect Wallet</h3>
@@ -72,7 +76,7 @@ const AboutPage = () => {
             </div>
             
             <div className="text-center">
-              <div className="w-16 h-16 bg-gradient-to-r from-purple-500 to-pink-500 rounded-full flex items-center justify-center text-2xl mb-4 mx-auto">
+              <div className="w-16 h-16 bg-gradient-to-r from-primary-500 to-primary-600 rounded-full flex items-center justify-center text-2xl mb-4 mx-auto">
                 2
               </div>
               <h3 className="text-xl font-semibold text-white mb-3">Choose Delegate</h3>
@@ -82,7 +86,7 @@ const AboutPage = () => {
             </div>
             
             <div className="text-center">
-              <div className="w-16 h-16 bg-gradient-to-r from-purple-500 to-pink-500 rounded-full flex items-center justify-center text-2xl mb-4 mx-auto">
+              <div className="w-16 h-16 bg-gradient-to-r from-primary-500 to-primary-600 rounded-full flex items-center justify-center text-2xl mb-4 mx-auto">
                 3
               </div>
               <h3 className="text-xl font-semibold text-white mb-3">Participate</h3>
@@ -183,7 +187,7 @@ const AboutPage = () => {
 
         {/* Call to Action */}
         <div className="text-center">
-          <div className="bg-gradient-to-r from-purple-500/20 to-pink-500/20 backdrop-blur-sm rounded-2xl p-8 border border-purple-300/30">
+          <div className="bg-gradient-to-r from-primary-500/20 to-primary-600/20 backdrop-blur-sm rounded-2xl p-8 border border-primary-300/30">
             <h2 className="text-3xl font-bold text-white mb-4">
               Ready to Participate in Governance?
             </h2>
@@ -192,7 +196,7 @@ const AboutPage = () => {
             </p>
             <Link 
               to="/dashboard" 
-              className="bg-gradient-to-r from-purple-500 to-pink-500 text-white px-10 py-4 rounded-full text-lg font-semibold hover:from-purple-600 hover:to-pink-600 transition-all duration-200 transform hover:scale-105 inline-block"
+              className="bg-gradient-to-r from-primary-500 to-primary-600 text-white px-10 py-4 rounded-full text-lg font-semibold hover:from-primary-600 hover:to-primary-700 transition-all duration-200 transform hover:scale-105 inline-block"
             >
               Start Delegating Now
             </Link>

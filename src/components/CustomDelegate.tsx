@@ -86,7 +86,7 @@ const CustomDelegate = ({ onDelegate, currentDelegate, isLoading }: CustomDelega
             !isValidAddress(customAddress) ||
             currentDelegate === customAddress
           }
-          className="w-full bg-gradient-to-r from-purple-500 to-pink-500 text-white py-3 rounded-lg font-semibold hover:from-purple-600 hover:to-pink-600 transition-all duration-200 disabled:opacity-50 disabled:cursor-not-allowed"
+          className="w-full bg-gradient-to-r from-primary-500 to-primary-600 text-white py-3 rounded-lg font-semibold hover:from-primary-600 hover:to-primary-700 transition-all duration-200 disabled:opacity-50 disabled:cursor-not-allowed"
         >
           {currentDelegate === customAddress 
             ? 'Already Delegated to This Address' 

@@ -26,7 +26,7 @@ const DelegationCard = ({ currentDelegate, userAddress, onUndelegate, isLoading 
   const isSelfDelegated = currentDelegate === userAddress;
 
   return (
-    <div className="bg-gradient-to-r from-purple-500/20 to-pink-500/20 backdrop-blur-sm rounded-xl p-6 border border-purple-300/30 mb-8">
+    <div className="bg-gradient-to-r from-primary-500/20 to-primary-600/20 backdrop-blur-sm rounded-xl p-6 border border-primary-300/30 mb-8">
       <div className="flex items-center justify-between">
         <div className="flex items-center space-x-4">
           <div className="text-4xl">

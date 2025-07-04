@@ -113,7 +113,7 @@ const DelegatePage = () => {
 
       {/* Current Delegation */}
       {delegationState.currentDelegate && (
-        <div className="bg-gradient-to-r from-purple-500/20 to-pink-500/20 backdrop-blur-sm rounded-xl p-6 border border-purple-300/30">
+        <div className="bg-gradient-to-r from-primary-500/20 to-primary-600/20 backdrop-blur-sm rounded-xl p-6 border border-primary-300/30">
           <div className="flex items-center justify-between">
             <div>
               <h3 className="text-xl font-semibold text-white mb-2">Currently Delegated</h3>
@@ -196,7 +196,7 @@ const DelegatePage = () => {
                 className={`px-6 py-2 rounded-lg font-semibold transition-all duration-200 ${
                   delegationState.currentDelegate === steward.address
                     ? 'bg-green-500/20 text-green-400 cursor-not-allowed'
-                    : 'bg-gradient-to-r from-purple-500 to-pink-500 text-white hover:from-purple-600 hover:to-pink-600 disabled:opacity-50'
+                    : 'bg-gradient-to-r from-primary-500 to-primary-600 text-white hover:from-primary-600 hover:to-primary-700 disabled:opacity-50'
                 }`}
               >
                 {delegationState.currentDelegate === steward.address 
@@ -240,7 +240,7 @@ const DelegatePage = () => {
               !isValidAddress(customAddress) ||
               delegationState.currentDelegate === customAddress
             }
-            className="w-full bg-gradient-to-r from-purple-500 to-pink-500 text-white py-3 rounded-lg font-semibold hover:from-purple-600 hover:to-pink-600 transition-all duration-200 disabled:opacity-50 disabled:cursor-not-allowed"
+            className="w-full bg-gradient-to-r from-primary-500 to-primary-600 text-white py-3 rounded-lg font-semibold hover:from-primary-600 hover:to-primary-700 transition-all duration-200 disabled:opacity-50 disabled:cursor-not-allowed"
           >
             {delegationState.currentDelegate === customAddress 
               ? 'Already Delegated to This Address' 

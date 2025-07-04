@@ -154,7 +154,7 @@ const AnalyticsPage = () => {
                   <div className="flex items-center space-x-2 flex-1 ml-4">
                     <div className="flex-1 bg-white/10 rounded-full h-2">
                       <div 
-                        className="bg-gradient-to-r from-blue-500 to-purple-500 h-2 rounded-full"
+                        className="bg-gradient-to-r from-primary-300 to-primary-500 h-2 rounded-full"
                         style={{ 
                           width: `${(item.count / Math.max(...analytics.delegationByMonth.map(d => d.count))) * 100}%` 
                         }}
@@ -188,7 +188,7 @@ const AnalyticsPage = () => {
                   <div className="flex items-center space-x-2 ml-4">
                     <div className="w-16 bg-white/10 rounded-full h-2">
                       <div 
-                        className="bg-gradient-to-r from-purple-500 to-pink-500 h-2 rounded-full"
+                        className="bg-gradient-to-r from-primary-500 to-primary-600 h-2 rounded-full"
                         style={{ width: `${item.percentage}%` }}
                       ></div>
                     </div>
@@ -210,7 +210,7 @@ const AnalyticsPage = () => {
 
       {/* Most Used Delegate */}
       {analytics.mostUsedDelegate && (
-        <div className="bg-gradient-to-r from-purple-500/20 to-pink-500/20 backdrop-blur-sm rounded-xl p-6 border border-purple-300/30">
+        <div className="bg-gradient-to-r from-primary-500/20 to-primary-600/20 backdrop-blur-sm rounded-xl p-6 border border-primary-300/30">
           <h3 className="text-xl font-semibold text-white mb-4">Most Trusted Delegate</h3>
           <div className="flex items-center justify-between">
             <div>

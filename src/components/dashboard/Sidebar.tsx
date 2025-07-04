@@ -70,8 +70,12 @@ const Sidebar = ({ onDisconnect, walletAddress }: SidebarProps) => {
           {/* Header */}
           <div className="p-4 border-b border-white/20">
             <div className="flex items-center justify-between">
-              <div className={`flex items-center space-x-2 ${isCollapsed ? 'justify-center' : ''}`}>
-                <div className="w-8 h-8 bg-gradient-to-r from-purple-400 to-pink-400 rounded-lg"></div>
+            <div className={`flex items-center space-x-2 ${isCollapsed ? 'justify-center' : ''}`}>
+                <img 
+                  src="/logo.png" 
+                  alt="Delegat3 Logo" 
+                  className="w-8 h-8 rounded-lg"
+                />
                 {!isCollapsed && (
                   <span className="text-white text-xl font-bold">Delegat3</span>
                 )}
@@ -90,7 +94,7 @@ const Sidebar = ({ onDisconnect, walletAddress }: SidebarProps) => {
               </button>
             </div>
           </div>
-          
+
 
           {/* Wallet Info */}
           {walletAddress && (
@@ -126,7 +130,7 @@ const Sidebar = ({ onDisconnect, walletAddress }: SidebarProps) => {
                       className={`
                         flex items-center space-x-3 px-3 py-2 rounded-lg transition-all duration-200
                         ${isActive 
-                          ? 'bg-gradient-to-r from-purple-500 to-pink-500 text-white' 
+                          ? 'bg-gradient-to-r from-primary-500 to-primary-600 text-white' 
                           : 'text-gray-300 hover:text-white hover:bg-white/10'
                         }
                         ${isCollapsed ? 'justify-center' : ''}
