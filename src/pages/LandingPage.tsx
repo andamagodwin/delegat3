@@ -1,4 +1,5 @@
 import { Link } from 'react-router-dom';
+import LazyImage from '../components/LazyImage';
 
 const LandingPage = () => {
   return (
@@ -7,10 +8,11 @@ const LandingPage = () => {
       <nav className="relative z-10 px-6 py-4">
         <div className="max-w-7xl mx-auto flex items-center justify-between">
           <div className="flex items-center space-x-2">
-            <img 
+            <LazyImage 
               src="/delegat3.svg" 
               alt="Delegat3 Logo" 
               className="w-32 rounded-lg"
+              showSpinner={true}
             />
           </div>
           <Link 
@@ -60,10 +62,11 @@ const LandingPage = () => {
             {/* Right Column - Voting Illustration */}
             <div className="flex-shrink-0 flex justify-center items-center">
               <div className="relative">
-                <img 
+                <LazyImage 
                   src="/voting.svg" 
                   alt="Voting Illustration" 
                   className="w-full max-w-sm md:max-w-md lg:max-w-lg xl:max-w-xl h-auto"
+                  showSpinner={true}
                 />
                 {/* Subtle glow effect behind the image */}
                 <div className="absolute inset-0 bg-primary-500/10 blur-3xl rounded-full transform scale-75 -z-10"></div>

@@ -1,10 +1,30 @@
+import { useState } from 'react';
+import LoadingSpinner from './LoadingSpinner';
+import LazyImage from './LazyImage';
+
 interface WalletConnectProps {
   onConnect: () => Promise<{ success: boolean; error?: string }>;
 }
 
 const WalletConnect = ({ onConnect }: WalletConnectProps) => {
+  const [isConnecting, setIsConnecting] = useState(false);
+  const [connectionError, setConnectionError] = useState<string | null>(null);
+
   const handleConnect = async () => {
-    await onConnect();
+    setIsConnecting(true);
+    setConnectionError(null);
+    
+    try {
+      const result = await onConnect();
+      if (!result.success && result.error) {
+        setConnectionError(result.error);
+      }
+    } catch (error) {
+      setConnectionError('Failed to connect wallet. Please try again.');
+      console.error('Connection error:', error);
+    } finally {
+      setIsConnecting(false);
+    }
   };
 
   return (
@@ -12,10 +32,11 @@ const WalletConnect = ({ onConnect }: WalletConnectProps) => {
       <div className="max-w-md w-full">
         <div className="text-center mb-8">
           <div className="flex items-center justify-center space-x-2 mb-6">
-            <img 
-              src="/logo.png" 
+            <LazyImage 
+              src="/delegat3.svg" 
               alt="Delegat3 Logo" 
               className="w-12 h-12 rounded-xl"
+              showSpinner={true}
             />
             <span className="text-white text-3xl font-bold">Delegat3</span>
           </div>
@@ -40,10 +61,24 @@ const WalletConnect = ({ onConnect }: WalletConnectProps) => {
 
             <button
               onClick={handleConnect}
-              className="w-full bg-gradient-to-r from-primary-500 to-primary-600 text-white py-4 rounded-xl font-semibold text-lg hover:from-primary-600 hover:to-primary-700 transition-all duration-200 transform hover:scale-105"
+              disabled={isConnecting}
+              className="w-full bg-gradient-to-r from-primary-500 to-primary-600 text-white py-4 rounded-xl font-semibold text-lg hover:from-primary-600 hover:to-primary-700 transition-all duration-200 transform hover:scale-105 disabled:opacity-50 disabled:cursor-not-allowed disabled:transform-none flex items-center justify-center gap-3"
             >
-              Connect Wallet
+              {isConnecting ? (
+                <>
+                  <LoadingSpinner size="sm" />
+                  <span>Connecting...</span>
+                </>
+              ) : (
+                'Connect Wallet'
+              )}
             </button>
+
+            {connectionError && (
+              <div className="p-3 bg-red-500/20 border border-red-500/30 rounded-lg">
+                <p className="text-red-300 text-sm text-center">{connectionError}</p>
+              </div>
+            )}
 
             <div className="text-center text-gray-400 text-sm">
               <p>By connecting, you agree to our Terms of Service</p>

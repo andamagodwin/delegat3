@@ -19,12 +19,17 @@ export const useWallet = () => {
     chainId: null,
     balance: null,
   });
+  const [isLoading, setIsLoading] = useState(false);
+  const [error, setError] = useState<string | null>(null);
 
   const [provider, setProvider] = useState<ethers.BrowserProvider | null>(null);
 
   const BASE_CHAIN_ID = 8453; // Base mainnet
 
   const connectWallet = async () => {
+    setIsLoading(true);
+    setError(null);
+    
     try {
       if (!window.ethereum) {
         throw new Error('No ethereum wallet found');
@@ -46,8 +51,12 @@ export const useWallet = () => {
 
       return { success: true };
     } catch (error) {
+      const errorMessage = error instanceof Error ? error.message : 'Unknown error';
+      setError(errorMessage);
       console.error('Failed to connect wallet:', error);
-      return { success: false, error: error instanceof Error ? error.message : 'Unknown error' };
+      return { success: false, error: errorMessage };
+    } finally {
+      setIsLoading(false);
     }
   };
 
@@ -132,5 +141,7 @@ export const useWallet = () => {
     disconnectWallet,
     switchToBase,
     isOnBase: walletState.chainId === BASE_CHAIN_ID,
+    isLoading,
+    error,
   };
 };
