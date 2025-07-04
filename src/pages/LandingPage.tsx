@@ -25,32 +25,50 @@ const LandingPage = () => {
 
       {/* Hero Section */}
       <div className="relative z-10 px-6 pt-20 pb-32">
-        <div className="max-w-7xl mx-auto text-center">
-          <h1 className="text-5xl md:text-7xl font-bold text-white mb-8">
-            Delegate Your
-            <span className="block bg-gradient-to-r from-primary-400 to-primary-600 bg-clip-text text-transparent">
-              Voting Power
-            </span>
-          </h1>
-          
-          <p className="text-xl text-gray-300 mb-12 max-w-3xl mx-auto leading-relaxed">
-            Take control of your Unlock Protocol governance. Delegate your UP tokens to trusted stewards, 
-            participate in protocol decisions, or delegate to yourself and vote directly.
-          </p>
+        <div className="max-w-7xl mx-auto">
+          <div className="grid lg:grid-cols-2 gap-12 items-center">
+            {/* Left Column - Text Content */}
+            <div className="text-center lg:text-left">
+              <h1 className="text-5xl md:text-7xl font-bold text-white mb-8">
+                Delegate Your
+                <span className="block bg-gradient-to-r from-primary-400 to-primary-600 bg-clip-text text-transparent">
+                  Voting Power
+                </span>
+              </h1>
+              
+              <p className="text-xl text-gray-300 mb-12 leading-relaxed">
+                Take control of your Unlock Protocol governance. Delegate your UP tokens to trusted stewards, 
+                participate in protocol decisions, or delegate to yourself and vote directly.
+              </p>
 
-          <div className="flex flex-col sm:flex-row gap-4 justify-center">
-            <Link 
-              to="/dashboard" 
-              className="bg-gradient-to-r from-primary-500 to-primary-600 text-white px-8 py-4 rounded-full text-lg font-semibold hover:from-primary-600 hover:to-primary-700 transition-all duration-200 transform hover:scale-105"
-            >
-              Get Started
-            </Link>
-            <Link 
-              to="/about" 
-              className="border-2 border-primary-500 text-primary-500 px-8 py-4 rounded-full text-lg font-semibold hover:bg-primary-500 hover:text-white transition-all duration-200"
-            >
-              Learn More
-            </Link>
+              <div className="flex flex-col sm:flex-row gap-4 justify-center lg:justify-start">
+                <Link 
+                  to="/dashboard" 
+                  className="bg-gradient-to-r from-primary-500 to-primary-600 text-white px-8 py-4 rounded-full text-lg font-semibold hover:from-primary-600 hover:to-primary-700 transition-all duration-200 transform hover:scale-105"
+                >
+                  Get Started
+                </Link>
+                <Link 
+                  to="/about" 
+                  className="border-2 border-primary-500 text-primary-500 px-8 py-4 rounded-full text-lg font-semibold hover:bg-primary-500 hover:text-white transition-all duration-200"
+                >
+                  Learn More
+                </Link>
+              </div>
+            </div>
+
+            {/* Right Column - Voting Illustration */}
+            <div className="flex justify-center lg:justify-end">
+              <div className="relative">
+                <img 
+                  src="/voting.svg" 
+                  alt="Voting Illustration" 
+                  className="w-full max-w-md lg:max-w-lg xl:max-w-xl h-auto"
+                />
+                {/* Subtle glow effect behind the image */}
+                <div className="absolute inset-0 bg-primary-500/10 blur-3xl rounded-full transform scale-75 -z-10"></div>
+              </div>
+            </div>
           </div>
         </div>
       </div>
