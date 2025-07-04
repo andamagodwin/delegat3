@@ -279,7 +279,8 @@ const LandingPage = () => {
             {/* Video Container */}
             <div className="relative aspect-video bg-black rounded-xl overflow-hidden">
               <iframe
-                src="https://www.youtube.com/embed/GXecSGmQDEI"
+                src="https://www.youtube.com/embed/6snWoY4GLkE"
+            
                 title="Delegat3 Demo Video"
                 frameBorder="0"
                 allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
