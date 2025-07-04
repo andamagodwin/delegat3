@@ -25,17 +25,17 @@ const LandingPage = () => {
       {/* Hero Section */}
       <div className="relative z-10 px-6 pt-20 pb-32">
         <div className="max-w-7xl mx-auto">
-          <div className="grid lg:grid-cols-2 gap-12 items-center">
+          <div className="flex flex-col lg:flex-row items-center justify-between gap-12 lg:gap-16">
             {/* Left Column - Text Content */}
-            <div className="text-center lg:text-left">
+            <div className="flex-1 text-center lg:text-left">
               <h1 className="text-5xl md:text-7xl font-bold text-white mb-8">
-                Delegate Your
+                Web3 governance,
                 <span className="block bg-gradient-to-r from-primary-400 to-primary-600 bg-clip-text text-transparent">
-                  Voting Power
+                  delegated your way.
                 </span>
               </h1>
               
-              <p className="text-xl text-gray-300 mb-12 leading-relaxed">
+              <p className="text-xl text-gray-300 mb-12 leading-relaxed max-w-2xl mx-auto lg:mx-0">
                 Take control of your Unlock Protocol governance. Delegate your UP tokens to trusted stewards, 
                 participate in protocol decisions, or delegate to yourself and vote directly.
               </p>
@@ -44,6 +44,7 @@ const LandingPage = () => {
                 <Link 
                   to="/dashboard" 
                   className="bg-gradient-to-r from-primary-500 to-primary-600 text-white px-8 py-4 rounded-full text-lg font-semibold hover:from-primary-600 hover:to-primary-700 transition-all duration-200 transform hover:scale-105"
+                  
                 >
                   Get Started
                 </Link>
@@ -57,12 +58,12 @@ const LandingPage = () => {
             </div>
 
             {/* Right Column - Voting Illustration */}
-            <div className="flex justify-center lg:justify-end">
+            <div className="flex-shrink-0 flex justify-center items-center">
               <div className="relative">
                 <img 
                   src="/voting.svg" 
                   alt="Voting Illustration" 
-                  className="w-full max-w-md lg:max-w-lg xl:max-w-xl h-auto"
+                  className="w-full max-w-sm md:max-w-md lg:max-w-lg xl:max-w-xl h-auto"
                 />
                 {/* Subtle glow effect behind the image */}
                 <div className="absolute inset-0 bg-primary-500/10 blur-3xl rounded-full transform scale-75 -z-10"></div>
@@ -76,7 +77,7 @@ const LandingPage = () => {
       <div className="relative z-10 px-6 py-20">
         <div className="max-w-7xl mx-auto">
           <h2 className="text-3xl font-bold text-white text-center mb-16">
-            Why Delegate with Delegat3?
+            Why Delegate with Us?
           </h2>
           
           <div className="grid md:grid-cols-3 gap-8">

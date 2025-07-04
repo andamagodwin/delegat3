@@ -72,13 +72,13 @@ const Sidebar = ({ onDisconnect, walletAddress }: SidebarProps) => {
             <div className="flex items-center justify-between">
             <div className={`flex items-center space-x-2 ${isCollapsed ? 'justify-center' : ''}`}>
                 <img 
-                  src="/logo.png" 
+                  src="/delegat3.svg" 
                   alt="Delegat3 Logo" 
-                  className="w-8 h-8 rounded-lg"
+                  className="w-20 rounded-lg"
                 />
-                {!isCollapsed && (
-                  <span className="text-white text-xl font-bold">Delegat3</span>
-                )}
+                {/* {!isCollapsed && (
+                  <span className="text-white text-xl font-bold">D</span>
+                )} */}
               </div>
               <button
                 onClick={() => setIsMobileOpen(false)}
