@@ -8,11 +8,10 @@ const LandingPage = () => {
         <div className="max-w-7xl mx-auto flex items-center justify-between">
           <div className="flex items-center space-x-2">
             <img 
-              src="/logo.png" 
+              src="/delegat3.svg" 
               alt="Delegat3 Logo" 
-              className="w-8 h-8 rounded-lg"
+              className="w-32 rounded-lg"
             />
-            <span className="text-white text-xl font-bold">Delegat3</span>
           </div>
           <Link 
             to="/dashboard" 
