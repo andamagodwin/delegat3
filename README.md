@@ -1,5 +1,7 @@
 # Delegat3 - Unlock Protocol Voting Delegation
 
+![Delegat3 Banner](./public/delegat3-banner-link.svg)
+
 A modern, user-friendly web application for delegating Unlock Protocol (UP) token voting rights on the Base network.
 
 ## 🚀 Features
