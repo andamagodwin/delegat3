@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg id="Layer_1" data-name="Layer 1" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1028 1028">
+  <defs>
+    <style>
+      .cls-1 {
+        fill: #1a1a1a;
+        stroke-width: 0px;
+      }
+
+      .cls-2 {
+        fill: #fff;
+        font-family: Academy-Regular, Academy;
+        font-size: 120px;
+      }
+    </style>
+  </defs>
+  <rect class="cls-1" width="1028" height="1028"/>
+  <text class="cls-2" transform="translate(174.48 506.94)"><tspan x="0" y="0">delegat3</tspan></text>
+</svg>
