@@ -22,7 +22,7 @@ function App() {
   const ProtectedRoute = ({ children }: { children: React.ReactNode }) => {
     if (!walletState.isConnected) {
       return (
-        <div className="min-h-screen bg-gradient-to-br from-purple-900 via-blue-900 to-indigo-900">
+        <div className="min-h-screen bg-gradient-to-br from-slate-900 via-slate-800 to-slate-900">
           <WalletConnect onConnect={connectWallet} />
         </div>
       )
@@ -30,7 +30,7 @@ function App() {
 
     if (!isOnBase) {
       return (
-        <div className="min-h-screen bg-gradient-to-br from-purple-900 via-blue-900 to-indigo-900 flex items-center justify-center">
+        <div className="min-h-screen bg-gradient-to-br from-slate-900 via-slate-800 to-slate-900 flex items-center justify-center">
           <div className="bg-white/10 backdrop-blur-sm rounded-2xl p-8 border border-white/20 text-center max-w-md">
             <h2 className="text-2xl font-bold text-white mb-4">Wrong Network</h2>
             <p className="text-gray-300 mb-6">
@@ -38,7 +38,7 @@ function App() {
             </p>
             <button
               onClick={switchToBase}
-              className="bg-gradient-to-r from-purple-500 to-pink-500 text-white px-6 py-3 rounded-lg font-semibold hover:from-purple-600 hover:to-pink-600 transition-all duration-200"
+              className="bg-gradient-to-r from-primary-500 to-primary-600 text-white px-6 py-3 rounded-lg font-semibold hover:from-primary-600 hover:to-primary-700 transition-all duration-200"
             >
               Switch to Base
             </button>

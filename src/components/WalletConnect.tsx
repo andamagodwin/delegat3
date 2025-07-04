@@ -35,10 +35,9 @@ const WalletConnect = ({ onConnect }: WalletConnectProps) => {
             <LazyImage 
               src="/delegat3.svg" 
               alt="Delegat3 Logo" 
-              className="w-12 h-12 rounded-xl"
+              className="w-32 rounded-xl"
               showSpinner={true}
             />
-            <span className="text-white text-3xl font-bold">Delegat3</span>
           </div>
           
           <h1 className="text-4xl font-bold text-white mb-4">
