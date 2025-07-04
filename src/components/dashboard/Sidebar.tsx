@@ -18,10 +18,11 @@ import {
 interface SidebarProps {
   onDisconnect: () => void
   walletAddress?: string | null
+  isCollapsed: boolean
+  setIsCollapsed: (collapsed: boolean) => void
 }
 
-const Sidebar = ({ onDisconnect, walletAddress }: SidebarProps) => {
-  const [isCollapsed, setIsCollapsed] = useState(false)
+const Sidebar = ({ onDisconnect, walletAddress, isCollapsed, setIsCollapsed }: SidebarProps) => {
   const [isMobileOpen, setIsMobileOpen] = useState(false)
   const location = useLocation()
 

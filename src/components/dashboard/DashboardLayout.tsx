@@ -1,3 +1,4 @@
+import { useState } from 'react'
 import type { ReactNode } from 'react'
 import Sidebar from './Sidebar'
 
@@ -8,12 +9,21 @@ interface DashboardLayoutProps {
 }
 
 const DashboardLayout = ({ children, onDisconnect, walletAddress }: DashboardLayoutProps) => {
+  const [isCollapsed, setIsCollapsed] = useState(false)
+
   return (
     <div className="min-h-screen bg-gradient-to-br from-slate-900 via-slate-800 to-slate-900">
-      <Sidebar onDisconnect={onDisconnect} walletAddress={walletAddress} />
+      <Sidebar 
+        onDisconnect={onDisconnect} 
+        walletAddress={walletAddress}
+        isCollapsed={isCollapsed}
+        setIsCollapsed={setIsCollapsed}
+      />
       
       {/* Main Content */}
-      <div className="lg:ml-64 min-h-screen">
+      <div className={`transition-all duration-300 ease-in-out min-h-screen ${
+        isCollapsed ? 'lg:ml-20' : 'lg:ml-64'
+      }`}>
         <main className="p-6">
           {children}
         </main>
