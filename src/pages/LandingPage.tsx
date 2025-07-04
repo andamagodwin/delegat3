@@ -25,7 +25,7 @@ const LandingPage = () => {
       {/* Hero Section */}
       <div className="relative z-10 px-6 pt-20 pb-32">
         <div className="max-w-7xl mx-auto">
-          <div className="flex flex-col lg:flex-row items-center justify-between gap-12 lg:gap-16">
+          <div className="flex flex-col lg:flex-row items-center justify-between p-16 gap-12 lg:gap-16">
             {/* Left Column - Text Content */}
             <div className="flex-1 text-center lg:text-left">
               <h1 className="text-5xl md:text-7xl font-bold text-white mb-8">
@@ -74,7 +74,7 @@ const LandingPage = () => {
       </div>
 
       {/* Features Section */}
-      <div className="relative z-10 px-6 py-20">
+      <div className="relative z-10 px-16 py-20">
         <div className="max-w-7xl mx-auto">
           <h2 className="text-3xl font-bold text-white text-center mb-16">
             Why Delegate with Us?
