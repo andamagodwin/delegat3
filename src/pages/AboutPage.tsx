@@ -11,7 +11,7 @@ const AboutPage = () => {
             <span className="text-white text-xl font-bold">Delegat3</span>
           </Link>
           <Link 
-            to="/app" 
+            to="/dashboard" 
             className="bg-white text-purple-900 px-6 py-2 rounded-full font-semibold hover:bg-gray-100 transition-colors duration-200"
           >
             Launch App
@@ -191,7 +191,7 @@ const AboutPage = () => {
               Join the Unlock Protocol community and make your voice heard through delegation.
             </p>
             <Link 
-              to="/app" 
+              to="/dashboard" 
               className="bg-gradient-to-r from-purple-500 to-pink-500 text-white px-10 py-4 rounded-full text-lg font-semibold hover:from-purple-600 hover:to-pink-600 transition-all duration-200 transform hover:scale-105 inline-block"
             >
               Start Delegating Now

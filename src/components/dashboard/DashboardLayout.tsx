@@ -1,0 +1,32 @@
+import type { ReactNode } from 'react'
+import Sidebar from './Sidebar'
+
+interface DashboardLayoutProps {
+  children: ReactNode
+  onDisconnect: () => void
+  walletAddress?: string | null
+}
+
+const DashboardLayout = ({ children, onDisconnect, walletAddress }: DashboardLayoutProps) => {
+  return (
+    <div className="min-h-screen bg-gradient-to-br from-purple-900 via-blue-900 to-indigo-900">
+      <Sidebar onDisconnect={onDisconnect} walletAddress={walletAddress} />
+      
+      {/* Main Content */}
+      <div className="lg:ml-64 min-h-screen">
+        <main className="p-6">
+          {children}
+        </main>
+      </div>
+      
+      {/* Background decoration */}
+      <div className="fixed inset-0 overflow-hidden pointer-events-none">
+        <div className="absolute -top-40 -right-40 w-80 h-80 bg-purple-500 rounded-full mix-blend-multiply filter blur-xl opacity-20"></div>
+        <div className="absolute -bottom-40 -left-40 w-80 h-80 bg-pink-500 rounded-full mix-blend-multiply filter blur-xl opacity-20"></div>
+        <div className="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 w-96 h-96 bg-blue-500 rounded-full mix-blend-multiply filter blur-xl opacity-10"></div>
+      </div>
+    </div>
+  )
+}
+
+export default DashboardLayout

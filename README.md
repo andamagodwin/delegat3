@@ -11,7 +11,9 @@ A modern, user-friendly web application for delegating Unlock Protocol (UP) toke
   - Delegate to any custom Ethereum address
 - **Delegation History**: Complete tracking of all delegation activities
 - **Base Network Integration**: Fast, low-cost transactions
+- **Cloud Data Storage**: Supabase integration for cross-device access
 - **Responsive Design**: Beautiful, modern UI that works on all devices
+- **Dashboard Analytics**: Comprehensive analytics and reporting
 - **Security First**: Your tokens never leave your wallet
 
 ## 🛠️ Technology Stack
@@ -20,6 +22,7 @@ A modern, user-friendly web application for delegating Unlock Protocol (UP) toke
 - **Styling**: Tailwind CSS
 - **Web3**: Ethers.js v6
 - **Routing**: React Router DOM
+- **Database**: Supabase
 - **Build Tool**: Vite
 - **Network**: Base (Ethereum L2)
 
@@ -30,6 +33,7 @@ A modern, user-friendly web application for delegating Unlock Protocol (UP) toke
 - Node.js 18+ and npm
 - MetaMask or compatible Web3 wallet
 - UP tokens on Base network
+- Supabase account (for cloud data storage)
 
 ### Installation
 
@@ -44,17 +48,79 @@ cd delegat3
 npm install
 ```
 
-3. Start the development server:
+3. Set up Supabase:
+   - Create a new project at [supabase.com](https://supabase.com)
+   - Copy the project URL and anon key
+   - Create a `.env` file in the root directory:
+   ```bash
+   VITE_SUPABASE_URL=your_supabase_project_url
+   VITE_SUPABASE_ANON_KEY=your_supabase_anon_key
+   ```
+   - Run the SQL commands from `supabase-schema.sql` in your Supabase SQL editor
+
+4. Start the development server:
 ```bash
 npm run dev
 ```
 
-4. Open http://localhost:5173 in your browser
+5. Open http://localhost:5173 in your browser
 
 ### Building for Production
 
 ```bash
 npm run build
+```
+
+## 📁 Project Structure
+
+```
+src/
+├── components/          # Reusable UI components
+│   ├── dashboard/      # Dashboard-specific components
+│   ├── DelegationCard.tsx
+│   ├── DelegationHistory.tsx
+│   └── WalletConnect.tsx
+├── pages/              # Application pages
+│   ├── dashboard/      # Dashboard pages
+│   ├── AboutPage.tsx
+│   └── LandingPage.tsx
+├── hooks/              # Custom React hooks
+│   ├── useDelegation.ts
+│   ├── useSupabase.ts
+│   └── useWallet.ts
+├── lib/                # External service configurations
+│   └── supabase.ts
+├── data/               # Static data
+│   └── stewards.ts
+└── types/              # TypeScript type definitions
+    └── index.ts
+```
+
+## 🗄️ Database Setup
+
+This app uses Supabase for cloud data storage. Follow these steps to set up your database:
+
+### 1. Create Supabase Project
+- Go to [supabase.com](https://supabase.com) and create a new project
+- Note your project URL and anon key
+
+### 2. Configure Environment Variables
+Create a `.env` file in your project root:
+```bash
+VITE_SUPABASE_URL=your_supabase_project_url
+VITE_SUPABASE_ANON_KEY=your_supabase_anon_key
+```
+
+### 3. Set Up Database Schema
+Run the SQL commands from `supabase-schema.sql` in your Supabase SQL editor to create the required tables:
+- `user_profiles` - Store user wallet information
+- `delegation_records` - Track all delegation activities
+
+### 4. Row Level Security (Optional)
+The schema includes RLS policies for data security. If you prefer public access for development, you can disable RLS by running:
+```sql
+ALTER TABLE user_profiles DISABLE ROW LEVEL SECURITY;
+ALTER TABLE delegation_records DISABLE ROW LEVEL SECURITY;
 ```
 
 ## 🎯 How to Use
@@ -66,7 +132,7 @@ npm run build
    - **Stewards**: Choose from trusted Unlock Protocol community members
    - **Custom**: Enter any Ethereum address
 4. **Confirm**: Approve the transaction in your wallet
-5. **Track**: View your delegation history and current status
+5. **Track**: View your delegation history and analytics in the dashboard
 
 ## 🔐 Security
 
@@ -74,17 +140,18 @@ npm run build
 - Delegation only transfers voting power, not token ownership
 - All transactions are on-chain and verifiable
 - You can change or remove delegation at any time
-- Local storage is used only for UI state and delegation history
+- Data is stored securely in Supabase with optional row-level security
+- Local storage is used as a backup for delegation history
 
-## 📊 Delegation Tracking
+## 📊 Dashboard Features
 
-The app maintains a comprehensive record of all delegation activities:
+The dashboard provides comprehensive insights into your delegation activities:
 
-- Timestamp of each delegation/undelegation
-- Target addresses and steward information
-- Transaction hashes for verification
-- Current delegation status
-- Historical voting power changes
+- **Overview**: Current delegation status and quick stats
+- **History**: Complete record of all delegation activities
+- **Analytics**: Charts and insights about your delegation patterns
+- **Stewards**: Information about trusted Unlock Protocol delegates
+- **Settings**: Account management and data export options
 
 ## 🌐 Network Information
 

@@ -11,7 +11,7 @@ const LandingPage = () => {
             <span className="text-white text-xl font-bold">Delegat3</span>
           </div>
           <Link 
-            to="/app" 
+            to="/dashboard" 
             className="bg-white text-purple-900 px-6 py-2 rounded-full font-semibold hover:bg-gray-100 transition-colors duration-200"
           >
             Launch App
@@ -36,7 +36,7 @@ const LandingPage = () => {
 
           <div className="flex flex-col sm:flex-row gap-4 justify-center">
             <Link 
-              to="/app" 
+              to="/dashboard" 
               className="bg-gradient-to-r from-purple-500 to-pink-500 text-white px-8 py-4 rounded-full text-lg font-semibold hover:from-purple-600 hover:to-pink-600 transition-all duration-200 transform hover:scale-105"
             >
               Get Started
@@ -124,7 +124,7 @@ const LandingPage = () => {
             Connect your wallet and start delegating your UP tokens today.
           </p>
           <Link 
-            to="/app" 
+            to="/dashboard" 
             className="bg-gradient-to-r from-purple-500 to-pink-500 text-white px-10 py-4 rounded-full text-lg font-semibold hover:from-purple-600 hover:to-pink-600 transition-all duration-200 transform hover:scale-105 inline-block"
           >
             Launch Delegat3 App
