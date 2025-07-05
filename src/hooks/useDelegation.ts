@@ -10,6 +10,24 @@ const UP_TOKEN_ADDRESS = import.meta.env.VITE_UP_TOKEN_ADDRESS
   ? ethers.getAddress(import.meta.env.VITE_UP_TOKEN_ADDRESS)
   : ethers.getAddress('0x833589fCD6eDb6E08f4c7C32D4f71b54bdA02913'); // Placeholder (USDC on Base)
 
+// Base network configuration
+const BASE_CHAIN_ID = 8453;
+
+// Helper function to ensure we're on the correct network
+const ensureBaseNetwork = async (provider: ethers.BrowserProvider): Promise<boolean> => {
+  try {
+    const network = await provider.getNetwork();
+    if (Number(network.chainId) !== BASE_CHAIN_ID) {
+      console.warn(`Expected Base network (${BASE_CHAIN_ID}), but connected to ${network.chainId}`);
+      return false;
+    }
+    return true;
+  } catch (error) {
+    console.error('Error checking network:', error);
+    return false;
+  }
+};
+
 // Simplified ERC20Votes ABI for delegation
 const ERC20_VOTES_ABI = [
   'function delegate(address delegatee) external',
@@ -35,6 +53,12 @@ export const useDelegation = (provider: ethers.BrowserProvider | null, address: 
     try {
       setDelegationState(prev => ({ ...prev, isLoading: true, error: null }));
       
+      // Ensure we're on the correct network
+      const isValidNetwork = await ensureBaseNetwork(provider);
+      if (!isValidNetwork) {
+        throw new Error('Please switch to Base network in your wallet');
+      }
+      
       const contract = new ethers.Contract(UP_TOKEN_ADDRESS, ERC20_VOTES_ABI, provider);
       const currentDelegate = await contract.delegates(address);
       
@@ -58,6 +82,12 @@ export const useDelegation = (provider: ethers.BrowserProvider | null, address: 
 
     try {
       setDelegationState(prev => ({ ...prev, isLoading: true, error: null }));
+      
+      // Ensure we're on the correct network
+      const isValidNetwork = await ensureBaseNetwork(provider);
+      if (!isValidNetwork) {
+        throw new Error('Please switch to Base network in your wallet');
+      }
       
       const signer = await provider.getSigner();
       const contract = new ethers.Contract(UP_TOKEN_ADDRESS, ERC20_VOTES_ABI, signer);
@@ -120,6 +150,12 @@ export const useDelegation = (provider: ethers.BrowserProvider | null, address: 
     try {
       setDelegationState(prev => ({ ...prev, isLoading: true, error: null }));
       
+      // Ensure we're on the correct network
+      const isValidNetwork = await ensureBaseNetwork(provider);
+      if (!isValidNetwork) {
+        throw new Error('Please switch to Base network in your wallet');
+      }
+      
       const signer = await provider.getSigner();
       const contract = new ethers.Contract(UP_TOKEN_ADDRESS, ERC20_VOTES_ABI, signer);
       
@@ -180,6 +216,13 @@ export const useDelegation = (provider: ethers.BrowserProvider | null, address: 
     if (!provider) return '0';
 
     try {
+      // Ensure we're on the correct network
+      const isValidNetwork = await ensureBaseNetwork(provider);
+      if (!isValidNetwork) {
+        console.warn('Not on Base network, returning 0 voting power');
+        return '0';
+      }
+
       const contract = new ethers.Contract(UP_TOKEN_ADDRESS, ERC20_VOTES_ABI, provider);
       const votes = await contract.getVotes(account || address);
       return ethers.formatEther(votes);
@@ -193,6 +236,13 @@ export const useDelegation = (provider: ethers.BrowserProvider | null, address: 
     if (!provider) return '0';
 
     try {
+      // Ensure we're on the correct network
+      const isValidNetwork = await ensureBaseNetwork(provider);
+      if (!isValidNetwork) {
+        console.warn('Not on Base network, returning 0 token balance');
+        return '0';
+      }
+
       const contract = new ethers.Contract(UP_TOKEN_ADDRESS, ERC20_VOTES_ABI, provider);
       const balance = await contract.balanceOf(account || address);
       return ethers.formatEther(balance);
