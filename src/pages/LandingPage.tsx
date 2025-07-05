@@ -9,58 +9,62 @@ const LandingPage = () => {
   return (
     <div className="min-h-screen bg-gradient-to-br from-slate-900 via-slate-800 to-slate-900">
       {/* Navigation */}
-      <nav className="relative z-10 px-6 py-4">
+      <nav className="relative z-10 px-4 sm:px-6 py-4">
         <div className="max-w-7xl mx-auto flex items-center justify-between">
           <div className="flex items-center space-x-2">
             <LazyImage 
               src="/delegat3.svg" 
               alt="Delegat3 Logo" 
-              className="w-32 rounded-lg"
+              className="w-24 sm:w-32 rounded-lg"
               showSpinner={true}
             />
           </div>
-          <div className="flex items-center space-x-4">
+          <div className="flex items-center space-x-2 sm:space-x-4">
+            {/* GitHub - Hidden on mobile, visible on sm+ */}
             <a
               href="https://github.com/andamagodwin/delegat3"
               target="_blank"
               rel="noopener noreferrer"
-              className="flex items-center space-x-2 text-gray-400 hover:text-white transition-colors duration-200 font-medium"
+              className="hidden sm:flex items-center space-x-2 text-gray-400 hover:text-white transition-colors duration-200 font-medium"
               title="View on GitHub"
             >
               <Github size={20} />
-              <span className="hidden sm:inline">GitHub</span>
+              <span className="hidden md:inline">GitHub</span>
             </a>
+            {/* Watch Demo - Hidden on mobile, visible on md+ */}
             <button
               onClick={() => setShowVideoModal(true)}
-              className="flex items-center space-x-2 text-primary-400 hover:text-primary-300 transition-colors duration-200 font-medium"
+              className="hidden md:flex items-center space-x-2 text-primary-400 hover:text-primary-300 transition-colors duration-200 font-medium"
             >
               <Play size={20} />
               <span>Watch Demo</span>
             </button>
+            {/* Launch App - Always visible but smaller on mobile */}
             <Link 
               to="/dashboard" 
-              className="bg-primary-500 text-white px-6 py-2 rounded-full font-semibold hover:bg-primary-600 transition-colors duration-200"
+              className="bg-primary-500 text-white px-4 py-2 sm:px-6 rounded-full font-semibold hover:bg-primary-600 transition-colors duration-200 text-sm sm:text-base"
             >
-              Launch App
+              <span className="sm:hidden">Launch</span>
+              <span className="hidden sm:inline">Launch App</span>
             </Link>
           </div>
         </div>
       </nav>
 
       {/* Hero Section */}
-      <div className="relative z-10 px-6 pt-20 pb-32">
+      <div className="relative z-10 px-4 sm:px-6 pt-12 sm:pt-20 pb-20 sm:pb-32">
         <div className="max-w-7xl mx-auto">
-          <div className="flex flex-col lg:flex-row items-center justify-between p-16 gap-12 lg:gap-16">
+          <div className="flex flex-col lg:flex-row items-center justify-between p-4 sm:p-8 lg:p-16 gap-8 sm:gap-12 lg:gap-16">
             {/* Left Column - Text Content */}
             <div className="flex-1 text-center lg:text-left">
-              <h1 className="text-5xl md:text-7xl font-bold text-white mb-8">
+              <h1 className="text-3xl sm:text-5xl md:text-6xl lg:text-7xl font-bold text-white mb-6 sm:mb-8">
                 Web3 governance,
                 <span className="block bg-gradient-to-r from-primary-400 to-primary-600 bg-clip-text text-transparent">
                   delegated your way.
                 </span>
               </h1>
               
-              <p className="text-xl text-gray-300 mb-12 leading-relaxed max-w-2xl mx-auto lg:mx-0">
+              <p className="text-lg sm:text-xl text-gray-300 mb-8 sm:mb-12 leading-relaxed max-w-2xl mx-auto lg:mx-0">
                 Take control of your Unlock Protocol governance. Delegate your UP tokens to trusted stewards, 
                 participate in protocol decisions, or delegate to yourself and vote directly.
               </p>
@@ -68,14 +72,14 @@ const LandingPage = () => {
               <div className="flex flex-col sm:flex-row gap-4 justify-center lg:justify-start">
                 <Link 
                   to="/dashboard" 
-                  className="bg-gradient-to-r from-primary-500 to-primary-600 text-white px-8 py-4 rounded-full text-lg font-semibold hover:from-primary-600 hover:to-primary-700 transition-all duration-200 transform hover:scale-105"
+                  className="bg-gradient-to-r from-primary-500 to-primary-600 text-white px-6 sm:px-8 py-3 sm:py-4 rounded-full text-base sm:text-lg font-semibold hover:from-primary-600 hover:to-primary-700 transition-all duration-200 transform hover:scale-105"
                   
                 >
                   Get Started
                 </Link>
                 <Link
                   to="/about"
-                  className="border-2 border-primary-500 text-primary-500 px-8 py-4 rounded-full text-lg font-semibold hover:bg-primary-500 hover:text-white transition-all duration-200"
+                  className="border-2 border-primary-500 text-primary-500 px-6 sm:px-8 py-3 sm:py-4 rounded-full text-base sm:text-lg font-semibold hover:bg-primary-500 hover:text-white transition-all duration-200"
                 >
                   Learn More
                 </Link>
@@ -83,12 +87,12 @@ const LandingPage = () => {
             </div>
 
             {/* Right Column - Voting Illustration */}
-            <div className="flex-shrink-0 flex justify-center items-center">
+            <div className="flex-shrink-0 flex justify-center items-center order-first lg:order-last">
               <div className="relative">
                 <LazyImage 
                   src="/voting.svg" 
                   alt="Voting Illustration" 
-                  className="w-full max-w-sm md:max-w-md lg:max-w-lg xl:max-w-xl h-auto"
+                  className="w-full max-w-xs sm:max-w-sm md:max-w-md lg:max-w-lg xl:max-w-xl h-auto"
                   showSpinner={true}
                 />
                 {/* Subtle glow effect behind the image */}
@@ -167,33 +171,33 @@ const LandingPage = () => {
       </div>
 
       {/* Features Section */}
-      <div className="relative z-10 px-16 py-20">
+      <div className="relative z-10 px-4 sm:px-8 lg:px-16 py-16 sm:py-20">
         <div className="max-w-7xl mx-auto">
-          <h2 className="text-3xl font-bold text-white text-center mb-16">
+          <h2 className="text-2xl sm:text-3xl font-bold text-white text-center mb-12 sm:mb-16">
             Why Delegate with Us?
           </h2>
           
-          <div className="grid md:grid-cols-3 gap-8">
-            <div className="bg-white/10 backdrop-blur-sm rounded-2xl p-8 border border-white/20">
+          <div className="grid md:grid-cols-3 gap-6 sm:gap-8">
+            <div className="bg-white/10 backdrop-blur-sm rounded-2xl p-6 sm:p-8 border border-white/20">
               <div className="text-4xl mb-4">🎯</div>
-              <h3 className="text-xl font-semibold text-white mb-4">Easy Delegation</h3>
-              <p className="text-gray-300">
+              <h3 className="text-lg sm:text-xl font-semibold text-white mb-4">Easy Delegation</h3>
+              <p className="text-gray-300 text-sm sm:text-base">
                 Simple interface to delegate your UP tokens to trusted stewards or yourself with just a few clicks.
               </p>
             </div>
             
-            <div className="bg-white/10 backdrop-blur-sm rounded-2xl p-8 border border-white/20">
+            <div className="bg-white/10 backdrop-blur-sm rounded-2xl p-6 sm:p-8 border border-white/20">
               <div className="text-4xl mb-4">📊</div>
-              <h3 className="text-xl font-semibold text-white mb-4">Track History</h3>
-              <p className="text-gray-300">
+              <h3 className="text-lg sm:text-xl font-semibold text-white mb-4">Track History</h3>
+              <p className="text-gray-300 text-sm sm:text-base">
                 Keep a complete record of all your delegation activities and voting power changes over time.
               </p>
             </div>
             
-            <div className="bg-white/10 backdrop-blur-sm rounded-2xl p-8 border border-white/20">
+            <div className="bg-white/10 backdrop-blur-sm rounded-2xl p-6 sm:p-8 border border-white/20">
               <div className="text-4xl mb-4">🔒</div>
-              <h3 className="text-xl font-semibold text-white mb-4">Secure & Transparent</h3>
-              <p className="text-gray-300">
+              <h3 className="text-lg sm:text-xl font-semibold text-white mb-4">Secure & Transparent</h3>
+              <p className="text-gray-300 text-sm sm:text-base">
                 Built on Base network with full transparency. Your tokens remain in your wallet at all times.
               </p>
             </div>
@@ -202,16 +206,16 @@ const LandingPage = () => {
       </div>
 
       {/* Stewards Preview */}
-      <div className="relative z-10 px-6 py-20">
+      <div className="relative z-10 px-4 sm:px-6 py-16 sm:py-20">
         <div className="max-w-7xl mx-auto text-center">
-          <h2 className="text-3xl font-bold text-white mb-8">
+          <h2 className="text-2xl sm:text-3xl font-bold text-white mb-6 sm:mb-8">
             Trusted Unlock Protocol Stewards
           </h2>
-          <p className="text-gray-300 mb-12 max-w-2xl mx-auto">
+          <p className="text-gray-300 mb-8 sm:mb-12 max-w-2xl mx-auto text-sm sm:text-base">
             Delegate to experienced community members who are actively involved in protocol governance and development.
           </p>
           
-          <div className="grid md:grid-cols-5 gap-6">
+          <div className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-5 gap-4 sm:gap-6">
             {[
               { name: 'Julien G.', role: 'Co-founder', avatar: '👨‍💻' },
               { name: 'Christopher C.', role: 'Community Lead', avatar: '🤝' },
@@ -219,10 +223,10 @@ const LandingPage = () => {
               { name: 'Angela S.', role: 'Growth Lead', avatar: '📈' },
               { name: 'Kalidou D.', role: 'Core Developer', avatar: '⚡' },
             ].map((steward, index) => (
-              <div key={index} className="bg-white/10 backdrop-blur-sm rounded-xl p-6 border border-white/20">
-                <div className="text-3xl mb-3">{steward.avatar}</div>
-                <h4 className="text-white font-semibold">{steward.name}</h4>
-                <p className="text-gray-400 text-sm">{steward.role}</p>
+              <div key={index} className="bg-white/10 backdrop-blur-sm rounded-xl p-4 sm:p-6 border border-white/20">
+                <div className="text-2xl sm:text-3xl mb-2 sm:mb-3">{steward.avatar}</div>
+                <h4 className="text-white font-semibold text-sm sm:text-base">{steward.name}</h4>
+                <p className="text-gray-400 text-xs sm:text-sm">{steward.role}</p>
               </div>
             ))}
           </div>
