@@ -11,6 +11,22 @@ import {
   ArrowDownRight
 } from 'lucide-react'
 
+// Loading skeleton component for stats cards
+const StatCardSkeleton = () => (
+  <div className="bg-white/10 backdrop-blur-sm rounded-xl p-6 border border-white/20 animate-pulse">
+    <div className="flex items-center justify-between">
+      <div className="flex-1">
+        <div className="h-4 bg-gray-600 rounded w-24 mb-2"></div>
+        <div className="h-8 bg-gray-600 rounded w-16"></div>
+      </div>
+      <div className="w-12 h-12 bg-gray-600 rounded-lg"></div>
+    </div>
+    <div className="flex items-center mt-4">
+      <div className="h-4 bg-gray-600 rounded w-32"></div>
+    </div>
+  </div>
+)
+
 const DashboardOverview = () => {
   const { walletState, provider } = useWallet()
   // Removed debug logging to prevent console spam
@@ -26,14 +42,19 @@ const DashboardOverview = () => {
     totalDelegations: 0,
     activeDelegations: 0
   })
-  const [isLoadingStats, setIsLoadingStats] = useState(false)
+  const [isLoadingStats, setIsLoadingStats] = useState(true)
+  const [hasLoadedOnce, setHasLoadedOnce] = useState(false)
 
   useEffect(() => {
     let isCancelled = false;
     
     const loadStats = async () => {
-      if (walletState.address && provider && !isLoadingStats && !isCancelled) {
+      // Only set loading to true if we haven't loaded once yet
+      if (!hasLoadedOnce && !isCancelled) {
         setIsLoadingStats(true)
+      }
+
+      if (walletState.address && provider && !isCancelled) {
         try {
           const [tokenBalance, votingPower] = await Promise.all([
             getTokenBalance().catch(() => '0'),
@@ -45,8 +66,11 @@ const DashboardOverview = () => {
               tokenBalance,
               votingPower,
               totalDelegations: delegationHistory.length,
-              activeDelegations: delegationState.currentDelegate ? 1 : 0
+              activeDelegations: delegationState.currentDelegate && 
+                                delegationState.currentDelegate !== '0x0000000000000000000000000000000000000000' ? 1 : 0
             })
+            setHasLoadedOnce(true)
+            setIsLoadingStats(false)
           }
         } catch (error) {
           console.error('Error loading stats:', error);
@@ -55,11 +79,24 @@ const DashboardOverview = () => {
               tokenBalance: '0',
               votingPower: '0',
               totalDelegations: delegationHistory.length,
-              activeDelegations: delegationState.currentDelegate ? 1 : 0
+              activeDelegations: delegationState.currentDelegate && 
+                                delegationState.currentDelegate !== '0x0000000000000000000000000000000000000000' ? 1 : 0
             })
+            setHasLoadedOnce(true)
+            setIsLoadingStats(false)
           }
-        } finally {
-          if (!isCancelled) {
+        }
+      } else {
+        // Update delegation stats even without provider (for non-network dependent data)
+        if (!isCancelled) {
+          setStats(prev => ({
+            ...prev,
+            totalDelegations: delegationHistory.length,
+            activeDelegations: delegationState.currentDelegate && 
+                              delegationState.currentDelegate !== '0x0000000000000000000000000000000000000000' ? 1 : 0
+          }))
+          if (!hasLoadedOnce) {
+            setHasLoadedOnce(true)
             setIsLoadingStats(false)
           }
         }
@@ -71,7 +108,7 @@ const DashboardOverview = () => {
     return () => {
       isCancelled = true;
     };
-  }, [walletState.address, provider, delegationHistory.length, delegationState.currentDelegate, getTokenBalance, getVotingPower, isLoadingStats])
+  }, [walletState.address, provider, delegationHistory.length, delegationState.currentDelegate, getTokenBalance, getVotingPower, hasLoadedOnce])
 
   const recentDelegations = delegationHistory.slice(0, 5)
 
@@ -93,80 +130,91 @@ const DashboardOverview = () => {
 
       {/* Stats Cards */}
       <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
-        <div className="bg-white/10 backdrop-blur-sm rounded-xl p-6 border border-white/20">
-          <div className="flex items-center justify-between">
-            <div>
-              <p className="text-gray-400 text-sm font-medium">UP Token Balance</p>
-              <p className="text-2xl font-bold text-white mt-1">
-                {parseFloat(stats.tokenBalance).toFixed(2)}
-              </p>
-            </div>
-            <div className="w-12 h-12 bg-blue-500/20 rounded-lg flex items-center justify-center">
-              <Zap className="text-blue-400" size={24} />
-            </div>
-          </div>
-          <div className="flex items-center mt-4 text-sm">
-            <ArrowUpRight className="text-green-400 mr-1" size={16} />
-            <span className="text-green-400">Available for delegation</span>
-          </div>
-        </div>
-
-        <div className="bg-white/10 backdrop-blur-sm rounded-xl p-6 border border-white/20">
-          <div className="flex items-center justify-between">
-            <div>
-              <p className="text-gray-400 text-sm font-medium">Voting Power</p>
-              <p className="text-2xl font-bold text-white mt-1">
-                {parseFloat(stats.votingPower).toFixed(2)}
-              </p>
-            </div>
-            <div className="w-12 h-12 bg-purple-500/20 rounded-lg flex items-center justify-center">
-              <TrendingUp className="text-purple-400" size={24} />
-            </div>
-          </div>
-          <div className="flex items-center mt-4 text-sm">
-            {delegationState.currentDelegate ? (
-              <>
+        {isLoadingStats && !hasLoadedOnce ? (
+          <>
+            <StatCardSkeleton />
+            <StatCardSkeleton />
+            <StatCardSkeleton />
+            <StatCardSkeleton />
+          </>
+        ) : (
+          <>
+            <div className="bg-white/10 backdrop-blur-sm rounded-xl p-6 border border-white/20">
+              <div className="flex items-center justify-between">
+                <div>
+                  <p className="text-gray-400 text-sm font-medium">UP Token Balance</p>
+                  <p className="text-2xl font-bold text-white mt-1">
+                    {parseFloat(stats.tokenBalance).toFixed(2)}
+                  </p>
+                </div>
+                <div className="w-12 h-12 bg-blue-500/20 rounded-lg flex items-center justify-center">
+                  <Zap className="text-blue-400" size={24} />
+                </div>
+              </div>
+              <div className="flex items-center mt-4 text-sm">
                 <ArrowUpRight className="text-green-400 mr-1" size={16} />
-                <span className="text-green-400">Currently delegated</span>
-              </>
-            ) : (
-              <>
-                <ArrowDownRight className="text-gray-400 mr-1" size={16} />
-                <span className="text-gray-400">Not delegated</span>
-              </>
-            )}
-          </div>
-        </div>
+                <span className="text-green-400">Available for delegation</span>
+              </div>
+            </div>
 
-        <div className="bg-white/10 backdrop-blur-sm rounded-xl p-6 border border-white/20">
-          <div className="flex items-center justify-between">
-            <div>
-              <p className="text-gray-400 text-sm font-medium">Total Delegations</p>
-              <p className="text-2xl font-bold text-white mt-1">{stats.totalDelegations}</p>
+            <div className="bg-white/10 backdrop-blur-sm rounded-xl p-6 border border-white/20">
+              <div className="flex items-center justify-between">
+                <div>
+                  <p className="text-gray-400 text-sm font-medium">Voting Power</p>
+                  <p className="text-2xl font-bold text-white mt-1">
+                    {parseFloat(stats.votingPower).toFixed(2)}
+                  </p>
+                </div>
+                <div className="w-12 h-12 bg-purple-500/20 rounded-lg flex items-center justify-center">
+                  <TrendingUp className="text-purple-400" size={24} />
+                </div>
+              </div>
+              <div className="flex items-center mt-4 text-sm">
+                {delegationState.currentDelegate && delegationState.currentDelegate !== '0x0000000000000000000000000000000000000000' ? (
+                  <>
+                    <ArrowUpRight className="text-green-400 mr-1" size={16} />
+                    <span className="text-green-400">Currently delegated</span>
+                  </>
+                ) : (
+                  <>
+                    <ArrowDownRight className="text-gray-400 mr-1" size={16} />
+                    <span className="text-gray-400">Not delegated</span>
+                  </>
+                )}
+              </div>
             </div>
-            <div className="w-12 h-12 bg-green-500/20 rounded-lg flex items-center justify-center">
-              <Activity className="text-green-400" size={24} />
-            </div>
-          </div>
-          <div className="flex items-center mt-4 text-sm">
-            <span className="text-gray-400">Lifetime activities</span>
-          </div>
-        </div>
 
-        <div className="bg-white/10 backdrop-blur-sm rounded-xl p-6 border border-white/20">
-          <div className="flex items-center justify-between">
-            <div>
-              <p className="text-gray-400 text-sm font-medium">Active Delegations</p>
-              <p className="text-2xl font-bold text-white mt-1">{stats.activeDelegations}</p>
+            <div className="bg-white/10 backdrop-blur-sm rounded-xl p-6 border border-white/20">
+              <div className="flex items-center justify-between">
+                <div>
+                  <p className="text-gray-400 text-sm font-medium">Total Delegations</p>
+                  <p className="text-2xl font-bold text-white mt-1">{stats.totalDelegations}</p>
+                </div>
+                <div className="w-12 h-12 bg-green-500/20 rounded-lg flex items-center justify-center">
+                  <Activity className="text-green-400" size={24} />
+                </div>
+              </div>
+              <div className="flex items-center mt-4 text-sm">
+                <span className="text-gray-400">Lifetime activities</span>
+              </div>
             </div>
-            <div className="w-12 h-12 bg-pink-500/20 rounded-lg flex items-center justify-center">
-              <Users className="text-pink-400" size={24} />
+
+            <div className="bg-white/10 backdrop-blur-sm rounded-xl p-6 border border-white/20">
+              <div className="flex items-center justify-between">
+                <div>
+                  <p className="text-gray-400 text-sm font-medium">Active Delegations</p>
+                  <p className="text-2xl font-bold text-white mt-1">{stats.activeDelegations}</p>
+                </div>
+                <div className="w-12 h-12 bg-pink-500/20 rounded-lg flex items-center justify-center">
+                  <Users className="text-pink-400" size={24} />
+                </div>
+              </div>
+              <div className="flex items-center mt-4 text-sm">
+                <span className="text-gray-400">Currently active</span>
+              </div>
             </div>
-          </div>
-          <div className="flex items-center mt-4 text-sm">
-            <span className="text-gray-400">Currently active</span>
-          </div>
-        </div>
+          </>
+        )}
       </div>
 
       {/* Current Delegation Status */}
