@@ -1,4 +1,5 @@
 import { useState, useEffect } from 'react'
+import { Link } from 'react-router-dom'
 import { useWallet } from '../../hooks/useWalletContext'
 import { useDelegation } from '../../hooks/useDelegation'
 import { 
@@ -285,8 +286,8 @@ const DashboardOverview = () => {
         <div className="bg-white/10 backdrop-blur-sm rounded-xl p-6 border border-white/20">
           <h3 className="text-xl font-semibold text-white mb-4">Quick Actions</h3>
           <div className="space-y-3">
-            <a
-              href="/dashboard/delegate"
+            <Link
+              to="/dashboard/delegate"
               className="block p-4 bg-gradient-to-r from-primary-500/20 to-primary-600/20 rounded-lg border border-primary-300/30 hover:border-primary-300/50 transition-all"
             >
               <div className="flex items-center justify-between">
@@ -296,10 +297,10 @@ const DashboardOverview = () => {
                 </div>
                 <ArrowUpRight className="text-purple-400" size={20} />
               </div>
-            </a>
+            </Link>
 
-            <a
-              href="/dashboard/stewards"
+            <Link
+              to="/dashboard/stewards"
               className="block p-4 bg-white/5 rounded-lg border border-white/10 hover:border-white/20 transition-all"
             >
               <div className="flex items-center justify-between">
@@ -309,10 +310,10 @@ const DashboardOverview = () => {
                 </div>
                 <ArrowUpRight className="text-gray-400" size={20} />
               </div>
-            </a>
+            </Link>
 
-            <a
-              href="/dashboard/history"
+            <Link
+              to="/dashboard/history"
               className="block p-4 bg-white/5 rounded-lg border border-white/10 hover:border-white/20 transition-all"
             >
               <div className="flex items-center justify-between">
@@ -322,7 +323,7 @@ const DashboardOverview = () => {
                 </div>
                 <ArrowUpRight className="text-gray-400" size={20} />
               </div>
-            </a>
+            </Link>
           </div>
         </div>
       </div>
