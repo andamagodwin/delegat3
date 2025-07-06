@@ -4,7 +4,33 @@
 
 A modern, user-friendly web application for delegating Unlock Protocol (UP) token voting rights on the Base network.
 
-## 🚀 Features
+## � Screenshots
+
+### Dashboard Overview
+![Dashboard Overview](./public/screen-shots/overview.png)
+*Main dashboard showing wallet balance, voting power, and delegation statistics*
+
+### Delegate Voting Rights
+![Delegate Page](./public/screen-shots/delegate.png)
+*Choose your delegation option: self-delegate, trusted stewards, or custom address*
+
+### Trusted Stewards
+![Stewards Page](./public/screen-shots/stewards.png)
+*Browse and select from verified Unlock Protocol community stewards*
+
+### Delegation History
+![History Page](./public/screen-shots/history.png)
+*Complete tracking of all your delegation activities and transactions*
+
+### Analytics Dashboard
+![Analytics Page](./public/screen-shots/analytics.png)
+*Comprehensive analytics and insights about your delegation patterns*
+
+### Settings & Account
+![Settings Page](./public/screen-shots/settings.png)
+*Account management, data export, and application preferences*
+
+## �🚀 Features
 
 - **Easy Wallet Connection**: Connect MetaMask and other Web3 wallets
 - **Multiple Delegation Options**:
